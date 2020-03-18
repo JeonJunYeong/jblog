@@ -14,6 +14,7 @@
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 </head>
 <body>
+	
 	<div id="container">
 		<c:import url="/WEB-INF/views/blog/includes/header.jsp" >
 			<c:param name="title" value="${blogVo.title }"/>

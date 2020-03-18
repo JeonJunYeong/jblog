@@ -14,6 +14,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		String url=request.getParameter("url");
+		System.out.println("URL : "+url);
+		
 		//1. handler 종류 ㅎ확인 
 		if(handler instanceof HandlerMethod == false) {
 			

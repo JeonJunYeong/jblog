@@ -46,8 +46,6 @@ public class BlogController {
 			nowCategoryNo =categoryNo.get();
 			nowPostNo=postNo.get();
 			
-			
-			
 		}else if(categoryNo.isPresent()) {
 			nowCategoryNo = categoryNo.get();
 		}
