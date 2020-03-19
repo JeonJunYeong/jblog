@@ -31,13 +31,12 @@
 			<mvc:mapping path="/user/blogauth"/>
 			<bean class="com.douzone.jblog.security.LoginInterceptor" />
 		</mvc:interceptor>
-		
 		<mvc:interceptor>
 			<mvc:mapping path="/user/logout"/>
 			<bean class="com.douzone.jblog.security.LogoutInterceptor" />
 		</mvc:interceptor>	
 		<mvc:interceptor>
-			<mvc:mapping path="/user/bloglogout"/>
+			<mvc:mapping path="/user/bloglogout/**"/>
 			<bean class="com.douzone.jblog.security.LogoutInterceptor" />
 		</mvc:interceptor>	
 		<mvc:interceptor>

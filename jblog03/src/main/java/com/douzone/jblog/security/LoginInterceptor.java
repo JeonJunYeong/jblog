@@ -24,8 +24,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String password = request.getParameter("password");
 		String blog = request.getParameter("blog");
 		String now = request.getParameter("now");
-		System.out.println("NOW :"+now);
-		System.out.println(request.getRequestURL());
+
+		
 		UserVo vo = new UserVo();
 		vo.setId(id);
 		vo.setPassword(password);

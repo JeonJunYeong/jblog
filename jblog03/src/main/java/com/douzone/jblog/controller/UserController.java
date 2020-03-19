@@ -56,7 +56,7 @@ public class UserController {
 	
 	@RequestMapping(value="/bloglogout/{now}")
 	public String bloglogout(Model model,@PathVariable("now")String now) {
-		
+		System.out.println("ONOWO : "+now);
 		model.addAttribute("blog","blog");
 		model.addAttribute("now",now);
 		return "user/logout";
