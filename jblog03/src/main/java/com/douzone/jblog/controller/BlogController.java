@@ -54,7 +54,7 @@ public class BlogController {
 		Map<String, Object> data = blogService.getAll(id, nowCategoryNo, nowPostNo);
 		
 		
-		
+		model.addAttribute("id",id);
 		model.addAllAttributes(data);
 		
 		return "blog/blog-main";
@@ -158,4 +158,8 @@ public class BlogController {
 		
 		return "redirect:/"+id+"/admin-category";
 	}
+	
+	
+	
+	
 }

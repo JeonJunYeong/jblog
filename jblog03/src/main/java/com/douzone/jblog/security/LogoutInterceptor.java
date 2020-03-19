@@ -14,9 +14,19 @@ public class LogoutInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		
+		String blog = request.getParameter("blog");
+		String now = request.getParameter("now");
+		
+		
+		
 		session.removeAttribute("authUser");
 		session.invalidate();
-		response.sendRedirect(request.getContextPath());
+		
+		if(blog.equals("blog")) {
+			response.sendRedirect(request.getContextPath()+"/"+now);
+		}else {
+			response.sendRedirect(request.getContextPath());
+		}
 			
 		return false;
 	}

@@ -2,8 +2,11 @@ package com.douzone.jblog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVo;
@@ -41,5 +44,23 @@ public class UserController {
 		
 		return "user/login";
 	}
+	
+	@RequestMapping(value="/bloglogin/{now}")
+	public String blogLogin(Model model,@PathVariable("now")String now) {
+		System.out.println(now);
+		model.addAttribute("blog","blog");
+		model.addAttribute("now",now);
+		return "user/login";
+	}
+	
+	
+	@RequestMapping(value="/bloglogout/{now}")
+	public String bloglogout(Model model,@PathVariable("now")String now) {
 		
+		model.addAttribute("blog","blog");
+		model.addAttribute("now",now);
+		return "user/logout";
+	}
+	
+	
 }

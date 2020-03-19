@@ -22,7 +22,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-	
+		String blog = request.getParameter("blog");
+		String now = request.getParameter("now");
+		System.out.println("NOW :"+now);
 		System.out.println(request.getRequestURL());
 		UserVo vo = new UserVo();
 		vo.setId(id);
@@ -40,10 +42,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		System.out.println("------>authUser:" + authUser);
-		
+		if(blog==null) {
+			blog="";
+		}
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
-		response.sendRedirect(request.getContextPath());
+		if(blog.equals("blog")) {
+			response.sendRedirect(request.getContextPath()+"/"+now);
+		}else {
+			response.sendRedirect(request.getContextPath());
+		}
 	
 		
 		return false;

@@ -14,18 +14,38 @@
 	<div class="center-content">
 		<h1 class="logo">JBlog</h1>
 		
-		<form class="login-form" method="post" action="${pageContext.request.contextPath }/user/auth">
-      		<label>아이디</label> <input type="text" name="id">
-      		<label>패스워드</label> <input type="password" name="password">
-      		<input type="submit" value="로그인">
-   
-      		<c:if test="${not empty userVo }">
-						<p>
-							로그인에 실패 했습니다.
-						</p>
-			</c:if>
-      		
-		</form>
+		<c:choose>
+			<c:when test="${blog eq null }">
+				<form class="login-form" method="post" action="${pageContext.request.contextPath }/user/auth">
+		      		<label>아이디</label> <input type="text" name="id">
+		      		<label>패스워드</label> <input type="password" name="password">
+		      		<input type="submit" value="로그인">
+		   
+		      		<c:if test="${not empty userVo }">
+								<p>
+									로그인에 실패 했습니다.
+								</p>
+					</c:if>	
+				</form>
+			</c:when>
+			<c:otherwise>
+				<form class="login-form" method="post" action="${pageContext.request.contextPath }/user/blogauth">
+		      		<label>아이디</label> <input type="text" name="id">
+		      		<label>패스워드</label> <input type="password" name="password">
+		      		<input type="hidden" name="blog" value="${blog }"/>
+		      		<input type="hidden" name="now" value="${now }"/>
+		      		<input type="submit" value="로그인">
+		   
+		      		<c:if test="${not empty userVo }">
+								<p>
+									로그인에 실패 했습니다.
+								</p>
+					</c:if>
+		      		
+				</form>
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 </body>
 </html>
