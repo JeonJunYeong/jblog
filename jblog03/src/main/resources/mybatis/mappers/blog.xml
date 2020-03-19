@@ -52,7 +52,8 @@
 			select a.no,a.name,a.description,a.reg_date,a.id,count(b.category_no) as count 
 			from category a left outer join post b on a.no=b.category_no 
 			where id=#{id}
-			group by a.no;
+			group by a.no 
+			order by a.no desc
 
 		]]>
 	</select>

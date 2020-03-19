@@ -7,12 +7,12 @@
 			<ul>
 			<c:choose>
 				<c:when test="${empty authUser }">
-					<li><a href="${pageContext.request.contextPath}/user/auth">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/blog/auth">로그인</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin-basic">블로그 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-					<li><a href=${pageContext.request.contextPath }/${authUser.id }>메인화면</a></li>
+					<li><a href="${pageContext.request.contextPath }/${authUser.id }">메인화면</a></li>
 				</c:otherwise>
 			</c:choose>
 			</ul>

@@ -42,6 +42,8 @@ public class BlogController {
 		long nowCategoryNo = 0L;
 		long nowPostNo = 0L;
 		
+		
+		
 		if(postNo.isPresent()) {
 			nowCategoryNo =categoryNo.get();
 			nowPostNo=postNo.get();
@@ -58,13 +60,6 @@ public class BlogController {
 		return "blog/blog-main";
 	}
 	
-	@RequestMapping("/blog/login")
-	public String login(UserVo vo) {
-		
-		return "user/login";
-	}
-	
-	
 	@RequestMapping("/admin-basic")
 	public String adminBasic(@PathVariable("id") String id,Model model) {
 	
@@ -74,7 +69,7 @@ public class BlogController {
 		return "blog/blog-admin-basic";
 	}
 	
-	@RequestMapping("/basic")
+	@RequestMapping("/admin/basic")
 	public String basic(@PathVariable("id") String id,
 						@RequestParam("title") String title,
 						@RequestParam(value="logo-file")MultipartFile multipartFile,Model model) {
@@ -97,14 +92,23 @@ public class BlogController {
 	
 		List<CategoryVo> list = blogService.findCategory(id);
 		model.addAttribute("list",list);
+		int min = list.get(0).getNo();
+		for (CategoryVo categoryVo : list) {
+			
+			if(min>categoryVo.getNo())
+				min=categoryVo.getNo();
+			
+		}
+		model.addAttribute("min",min);
 		BlogVo blogVo = blogService.find(id);
 		model.addAttribute("blogVo",blogVo);
+		
 		
 		
 		return "blog/blog-admin-category";
 	}
 	
-	@RequestMapping("/category")
+	@RequestMapping("/admin/category")
 	public String  category(@PathVariable("id") String id,CategoryVo vo) {
 		
 		vo.setId(id);
@@ -129,7 +133,7 @@ public class BlogController {
 		
 	}
 	
-	@RequestMapping("/write")
+	@RequestMapping("/admin/write")
 	public String write(@PathVariable("id") String id,PostVo vo,Model model) {
 		
 		
@@ -140,7 +144,7 @@ public class BlogController {
 		return "redirect:/"+id;
 	}
 	
-	@RequestMapping("/delete/{idx}")
+	@RequestMapping("/admin/delete/{idx}")
 	public String delete(@PathVariable("id") String id,
 						@PathVariable("idx") long no ) {
 		
@@ -154,8 +158,4 @@ public class BlogController {
 		
 		return "redirect:/"+id+"/admin-category";
 	}
-	
-	
-	
-	
 }

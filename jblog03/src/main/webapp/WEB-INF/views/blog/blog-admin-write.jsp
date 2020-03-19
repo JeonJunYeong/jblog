@@ -17,7 +17,7 @@
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<c:import url="/WEB-INF/views/blog/includes/admin-menu.jsp"/>
-				<form action="${pageContext.request.contextPath }/${blogVo.id }/write" method="post">
+				<form action="${pageContext.request.contextPath }/${blogVo.id }/admin/write" method="post">
 			      	<table class="admin-cat-write">
 			      		<tr>
 			      			<td class="t" >제목</td>

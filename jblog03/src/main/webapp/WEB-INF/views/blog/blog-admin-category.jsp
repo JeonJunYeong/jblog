@@ -39,12 +39,27 @@
 		      				<td>${list.name }</td>
 		      				<td>${list.count }</td>
 		      				<td>${list.description }</td>
-		      				<td><a href="${pageContext.request.contextPath }/${blogVo.id }/delete/${list.no}"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
+		      				<c:choose>
+		      					<c:when test="${list.no>min }">
+		      						<c:choose>
+		      							<c:when test="${list.count==0 }">
+		      								삭제 할 수 없습니다.
+		      							</c:when>
+		      							<c:otherwise>
+		      								<td><a href="${pageContext.request.contextPath }/${blogVo.id }/delete/${list.no}"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
+		      							</c:otherwise>
+		      						</c:choose>
+		      					</c:when>
+		      					<c:otherwise>
+		      						<td>기본 카테고리</td>
+		      					</c:otherwise>
+		      				</c:choose>
+		      					
 		      			<tr>
 		      		</c:forEach>
 							  
 				</table>
-      		<form action="${pageContext.request.contextPath }/${id }/category" method="post" >
+      		<form action="${pageContext.request.contextPath }/${id }/admin/category" method="post" >
       			<h4 class="n-c">새로운 카테고리 추가</h4>
 		      	<table id="admin-cat-add">
 		      		<tr>

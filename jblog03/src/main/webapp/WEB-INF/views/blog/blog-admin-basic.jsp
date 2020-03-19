@@ -17,7 +17,7 @@
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<c:import url="/WEB-INF/views/blog/includes/admin-menu.jsp"/>
-				<form action="${pageContext.request.contextPath }/${blogVo.id }/basic" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath }/${blogVo.id }/admin/basic" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 			      	     		
 			      		<tr>
