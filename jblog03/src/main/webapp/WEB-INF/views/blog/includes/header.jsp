@@ -11,10 +11,16 @@
 				</c:when>
 				<c:otherwise>
 					<li><a href="${pageContext.request.contextPath}/user/bloglogout/${param.now}">로그아웃</a></li>
-					<c:if test="${authUser.id eq param.now }">
-						<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin-basic">블로그 관리</a></li>
-						<li><a href="${pageContext.request.contextPath }/${authUser.id }">메인화면</a></li>
-					</c:if>
+					<c:choose>
+						<c:when test="${authUser.id eq param.now }">
+							<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin-basic">블로그 관리</a></li>
+							<li><a href="${pageContext.request.contextPath }/${authUser.id }">메인화면</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="${pageContext.request.contextPath }/${authUser.id }">내블로그</a></li>
+						</c:otherwise>
+					</c:choose>
+					
 				</c:otherwise>
 			</c:choose>
 			</ul>
