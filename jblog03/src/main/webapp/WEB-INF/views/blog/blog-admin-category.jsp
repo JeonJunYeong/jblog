@@ -18,6 +18,7 @@
 	<div id="container">
 		<c:import url="/WEB-INF/views/blog/includes/header.jsp" >
 			<c:param name="title" value="${blogVo.title }"/>
+			<c:param name = "now" value="${blogVo.id }"/>
 		</c:import>
 		<div id="wrapper">
 			<div id="content" class="full-screen">

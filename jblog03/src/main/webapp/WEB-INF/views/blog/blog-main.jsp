@@ -18,6 +18,7 @@
 	<div id="container">
 		<c:import url="/WEB-INF/views/blog/includes/header.jsp" >
 			<c:param name="title" value="${blogVo.title }"/>
+			<c:param name = "now" value="${blogVo.id }"/>
 		</c:import>
 		<div id="wrapper">
 			<div id="content">
@@ -38,6 +39,7 @@
 		
 		<c:import url="/WEB-INF/views/blog/includes/navigation.jsp" >
 			<c:param name = "id" value="${blogVo.id }"/>
+			
 			<c:param name ="logo" value ="${blogVo.logo }"/>
 			<c:param name="categoryList" value="${categoryList }"/>
 		</c:import>

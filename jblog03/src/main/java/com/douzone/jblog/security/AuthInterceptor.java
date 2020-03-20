@@ -25,46 +25,44 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			authUser.setId("NOTLOGINIDNOTLOGINIDNOTLOGINDI");
 		}
 		
+		
 		String[] conArr=url.split(request.getContextPath()+"/");
-		boolean check = false;
-		if(conArr.length!=1) {
+		
+		if(conArr.equals("user") || conArr.equals("admin")) {
 			
-			String[] getConArr = conArr[1].split("/");
-			
-			for (String string : getConArr) {
-				if(string.contains("admin")&&!(getConArr[0].contains("admin"))) {
-					
-					System.out.println(string);
-					check = true;
-					break;
-				}
-			}
-			
-			if(getConArr.length>1) {
-				
-				boolean digitCheck = false;
-				for(int i=1;i<getConArr.length;i++) {
-					
-					if(isStringDouble(getConArr[i]))
-						digitCheck=true;
-				}
-					
-				
-					if(digitCheck==false&&!getConArr[1].contains("admin")&&!getConArr[0].equals("user")&&!getConArr[0].equals("images")) {
-						response.sendRedirect(request.getContextPath()+"/"+getConArr[0]);
-						return false;
-					
-				}
-			}
-			
-			if((!authUser.getId().equals(getConArr[0]))&&check==true&&getConArr.length!=1) {
-				response.sendRedirect(request.getContextPath()+"/"+getConArr[0]);
-				return false;
-			}
+			return true;
 		}
 		
-		
-		
+		if(conArr.length!=1) {
+			
+			String[] urlArr=conArr[1].split("/");
+			
+			if(urlArr.length==2) {
+				
+				if(isStringDouble(urlArr[1])) {
+					return true;
+				}else {
+					if(urlArr[1].contains("user"))
+						return true;
+					
+					if(urlArr[1].contains("admin")) {
+						if(authUser.getId().equals(urlArr[0])) {
+							return true;
+						}else {
+							response.sendRedirect(request.getContextPath()+"/"+urlArr[0]);
+							return false;
+						}
+						
+					}else {
+						response.sendRedirect(request.getContextPath()+"/"+urlArr[0]);
+						return false;
+					}
+				}
+					
+			}
+			
+			
+		}
 		
 		
 //		//1. handler 종류 ㅎ확인 
