@@ -55,26 +55,40 @@ public class UserController {
 		return "user/login";
 	}
 	
+	
+	@RequestMapping(value="/auth",method=RequestMethod.POST)
+	public void auth() {
+	
+	}
+	@RequestMapping(value="/logout",method=RequestMethod.POST)
+	public void logout() {
+		
+	}
+	
+	@RequestMapping(value="/blogauth",method=RequestMethod.POST)
+	public void blogauth() {
+		
+	}
+	
+	
 	@RequestMapping(value="/bloglogin/{now}")
 	public String blogLogin(Model model,@PathVariable("now")String now) {
-		
+		System.out.println(now);
 		model.addAttribute("blog","blog");
 		model.addAttribute("now",now);
 		return "user/login";
 	}
 	
+
+	
+	
 	
 	@RequestMapping(value="/bloglogout/{now}")
 	public String bloglogout(Model model,@PathVariable("now")String now) {
-		
+		System.out.println("ONOWO : "+now);
 		model.addAttribute("blog","blog");
 		model.addAttribute("now",now);
 		return "user/logout";
-	}
-	
-	@RequestMapping(value="/blogauth",method = RequestMethod.POST)
-	public void bloglogin() {
-		
 	}
 	
 	
