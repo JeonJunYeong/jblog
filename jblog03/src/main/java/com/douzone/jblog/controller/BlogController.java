@@ -22,7 +22,7 @@ import com.douzone.jblog.vo.UserVo;
 
 
 @Controller
-@RequestMapping("/{id:(?!assets|images).*}")
+@RequestMapping("/{id:(?!assets|images|apiblog).*}")
 public class BlogController {
 
 	@Autowired
@@ -86,7 +86,7 @@ public class BlogController {
 		
 		return "redirect:/"+id;
 	}
-
+	
 	@RequestMapping("/admin-category")
 	public String adminCategory(@PathVariable("id") String id,Model model) {
 	
@@ -97,28 +97,28 @@ public class BlogController {
 			
 			if(min>categoryVo.getNo())
 				min=categoryVo.getNo();
-			
+	
 		}
 		model.addAttribute("min",min);
 		BlogVo blogVo = blogService.find(id);
 		model.addAttribute("blogVo",blogVo);
 		
 		
-		
 		return "blog/blog-admin-category";
 	}
 	
-	@RequestMapping("/admin/category")
-	public String  category(@PathVariable("id") String id,CategoryVo vo) {
-		
-		vo.setId(id);
-		
-		
-		blogService.insertCategory(vo);
-		
-		
-		return "redirect:/"+id+"/admin-category";
-	}
+	/*
+	 * @RequestMapping("/admin/category") public String category(@PathVariable("id")
+	 * String id,CategoryVo vo) {
+	 * 
+	 * vo.setId(id);
+	 * 
+	 * 
+	 * blogService.insertCategory(vo);
+	 * 
+	 * 
+	 * return "redirect:/"+id+"/admin-category"; }
+	 */
 	
 	@RequestMapping("/admin-write")
 	public String adminWrite(@PathVariable("id") String id,Model model) {

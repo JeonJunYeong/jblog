@@ -25,17 +25,19 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			authUser.setId("NOTLOGINIDNOTLOGINIDNOTLOGINDI");
 		}
 		
-		
 		String[] conArr=url.split(request.getContextPath()+"/");
 		
-		if(conArr.equals("user") || conArr.equals("admin")) {
-			
+		
+		if(conArr.equals("user") || conArr.equals("admin")||conArr.equals("apiblog")) {
+		
 			return true;
 		}
 		
 		if(conArr.length!=1) {
 			
 			String[] urlArr=conArr[1].split("/");
+			
+		
 			
 			if(urlArr.length==2) {
 				
@@ -44,6 +46,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 				}else {
 					if(urlArr[1].contains("user"))
 						return true;
+					
+					if(urlArr[1].contains("category-add")) {
+						return true;
+					}
 					
 					if(urlArr[1].contains("admin")) {
 						if(authUser.getId().equals(urlArr[0])) {

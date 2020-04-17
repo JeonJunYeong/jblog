@@ -47,15 +47,23 @@
 	
 	</delete>
 	
-	<select id="findCategory" parameterType="String" resultMap="joinCategory">
+	<select id="findCategory" parameterType="string" resultMap="joinCategory">
 		<![CDATA[
 			select a.no,a.name,a.description,a.reg_date,a.id,count(b.category_no) as count 
 			from category a left outer join post b on a.no=b.category_no 
 			where id=#{id}
 			group by a.no 
-			order by a.no desc
+			order by a.no asc
 
 		]]>
+	</select>
+	
+	<select id="findLastCategoryNo" parameterType="string" resultType="int">
+		<![CDATA[
+			select no from category 
+			where id like #{id} order by no desc limit 1
+			]]>
+		
 	</select>
 	
 	<insert id="insertPost" parameterType="postvo">
