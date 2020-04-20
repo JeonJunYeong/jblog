@@ -39,6 +39,65 @@ var messageBox =function(title,message,callback){
 	});
 }
 
+var deleteBox =function(data,len){
+
+	 	$('#dialog-message p').text('삭제하시려면 확인을 눌러주세요');
+	$('#dialog-message').attr('title', '카테고리 삭제').dialog({
+		modal : true,
+		buttons : {
+			"확인" : function() {
+				var no = data;
+				var id ='${id}';
+				var leng = len;
+				var total = $('.admin-cat').find('tr').length;
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath }/apiblog/delete/'+no+'/'+id,
+					async : true,
+					type : 'delete',
+					dataType : 'json',
+					data: '',
+					success : function(response){
+					
+					
+					$(".admin-cat tr[data-no="+no+"]").remove();
+					// var arr = $('.admin-cat tr').find("td").text();
+					 if(total!=leng){
+						
+						 for(var i=1;i<(total-leng);i++){
+							  if(leng>i){
+								var nowNum= Number($(".admin-cat tr:eq("+i+")>td:eq(0)").text())-1;
+								$(".admin-cat tr:eq("+i+")>td:eq(0)").html(nowNum);
+								
+							}else{
+								break;
+							}
+						}   
+						 
+						 
+					} 
+					
+					//$("#list-guestbook tr[data-no="+no+"]").remove();
+						
+						
+					},
+					error : function(xhr, status, e){
+						console.error(status + ":"+ e);
+					}
+				});
+				
+			
+				$(this).dialog("close");
+			},
+			"취소" : function() {
+				$(this).dialog("close");
+			}
+		}
+		
+		
+	}); 
+}
+
 var fetchList= function(){
 	
 	$.ajax({
@@ -125,8 +184,10 @@ $(function(){
 				response.data.len= $('.admin-cat').find('tr').length;
 				var html = listItemTemplate.render(response.data);
 				
-				$('.admin-cat').append(html); 
+				$('.admin-cat tr').first().after(html); 
 				$("#add-form")[0].reset();
+				
+				
 				 
 			},
 			error : function(xhr, status, e) {

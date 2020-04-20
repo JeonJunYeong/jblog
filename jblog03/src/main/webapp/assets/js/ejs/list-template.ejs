@@ -3,10 +3,6 @@
 		var vo = data[i];
 		var now = i+1; 
 		var imgSource = imgSource;
-		var min = min;
-		
-		
-		
 %>
 	<tr data-no='<%=vo.no%>'>
 		<td><%=now%></td>
@@ -14,7 +10,7 @@
 		<td><%=vo.count%></td>
 		<td><%=vo.description%></td>
 		<% if(vo.delMsg=='삭제') {%>
-			<td><img src='<%=imgSource%>'/></td>
+			<td><img src='<%=imgSource%>' alt='delete' onclick='deleteBox(<%=vo.no%>,<%=now%>)'/></td>
 		<%}else{%>
 			<td><%=vo.delMsg%></td>
 		<%}%>
