@@ -53,7 +53,7 @@
 			from category a left outer join post b on a.no=b.category_no 
 			where id=#{id}
 			group by a.no 
-			order by a.no desc
+			order by a.no asc
 
 		]]>
 	</select>

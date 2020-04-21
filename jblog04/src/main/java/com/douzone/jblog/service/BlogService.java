@@ -221,6 +221,13 @@ public class BlogService {
 	}
 	
 
+	public int findCategoryNo(String id) {
+		
+		
+		return blogRepository.findCategoryNo(id);
+	}
+	
+
 	
 
 	

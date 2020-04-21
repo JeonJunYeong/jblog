@@ -105,7 +105,10 @@ public class BlogRepository {
 		
 	}
 
-	
+	public int findCategoryNo(String id) {
+		
+		return sqlSession.selectOne("blog.findLastCategoryNo",id);
+	}
 	
 
 	
