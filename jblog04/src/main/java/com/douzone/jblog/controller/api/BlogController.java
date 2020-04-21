@@ -38,6 +38,7 @@ public class BlogController {
 	@PostMapping("/category-add")
 	@ResponseBody
 	public JsonResult add(@RequestBody CategoryVo vo) {
+		System.out.println(vo.toString());
 		
 		blogService.insertCategory(vo);
 		vo.setNo(blogService.findCategoryNo(vo.getId()));

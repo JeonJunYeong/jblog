@@ -53,7 +53,6 @@ public class BlogController {
 		map.put("id", id);
 		map.put("no", no);
 		
-		System.out.println("ID :"+id+",NO:"+no);
 		blogService.deleteCategory(map);
 		
 		return JsonResult.success(null);

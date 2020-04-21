@@ -107,19 +107,19 @@ public class BlogController {
 		
 		return "blog/blog-admin-category";
 	}
-	
-	@RequestMapping("/admin/category")
-	public String  category(@PathVariable("id") String id,CategoryVo vo) {
-		
-		vo.setId(id);
-		
-		
-		blogService.insertCategory(vo);
-		
-		
-		return "redirect:/"+id+"/admin-category";
-	}
-	
+
+	/*
+	 * @RequestMapping("/admin/category") public String category(@PathVariable("id")
+	 * String id,CategoryVo vo) {
+	 * 
+	 * vo.setId(id);
+	 * 
+	 * 
+	 * blogService.insertCategory(vo);
+	 * 
+	 * 
+	 * return "redirect:/"+id+"/admin-category"; }
+	 */
 	@RequestMapping("/admin-write")
 	public String adminWrite(@PathVariable("id") String id,Model model) {
 		
